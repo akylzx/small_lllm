@@ -1,0 +1,17 @@
+{
+  "tokenizer_class": "SentencePieceTokenizerFast",
+  "vocab_file": "./smp_unigram_tokenizer/smp_unigram_multilingual.vocab",
+  "model_file": "./smp_unigram_tokenizer/smp_unigram_multilingual.model",
+  "bos_token": "<bos>",
+  "eos_token": "<eos>",
+  "pad_token": "<pad>",
+  "unk_token": "<unk>",
+  "model_max_length": 2048,
+  "additional_special_tokens": [
+    "<mask>",
+    "<start_of_turn>",
+    "<end_of_turn>",
+    "<sep>",
+    "<cls>"
+  ]
+}

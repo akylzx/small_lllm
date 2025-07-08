@@ -1,0 +1,9 @@
+{
+  "tokenizer_class": "SentencePieceTokenizerFast",
+  "vocab_size": 75000,
+  "bos_token": "<bos>",
+  "eos_token": "<eos>",
+  "pad_token": "<pad>",
+  "unk_token": "<unk>",
+  "model_max_length": 2048
+}

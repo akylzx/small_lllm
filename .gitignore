@@ -1,0 +1,10 @@
+__pycache__/
+*pt
+*.chkpt
+*.bin
+*.model
+*.vocab
+*.txt
+tokenizer/english_eval_texts.json
+tokenizer/kazakh_eval_texts.json
+tokenizer/russian_eval_texts.json
