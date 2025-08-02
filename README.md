@@ -89,7 +89,7 @@ python inference/inference.py
 
 ## Development
 
-The entire project was developed over one month of daily coding, researching, and thinking during the ISSAI summer program.
+The entire project was developed in one month of daily coding, research, and reflection during the ISSAI summer program.
 
 ---
 
