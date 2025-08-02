@@ -1,16 +1,13 @@
 import torch
-from llm_project.new_model.model.new_model import ModelConfig, Model, LANGUAGE_MAP
+from model.model import ModelConfig, Model
 from sentencepiece import SentencePieceProcessor
 
 # Check if CUDA is available, otherwise use CPU
 device = "cuda" if torch.cuda.is_available() else "cpu"
 print(f"Using device: {device}")
 
-tokenizer_path = "/home/srp_base_training/sanzhar/llm_project/llm_tokenizer/spm_bpe_tokenizer_200m/tokenizer.model"
-tokenizer = SentencePieceProcessor(model_file=tokenizer_path)
-
-# checkpoint_path = "/home/srp_base_training/sanzhar/checkpoints_new/model_step_160000.pt"
-checkpoint_path = "/home/srp_base_training/sanzhar/checkpoints_sft/checkpoint_step16000.pt"
+tokenizer_path = "llm_tokenizer/spm_bpe_tokenizer_200m/tokenizer.model"
+checkpoint_path = "checkpoints_sft/checkpoint_step16000.pt"
 # Always map to the device we're using (CPU or CUDA)
 checkpoint = torch.load(checkpoint_path, map_location=device, weights_only=False)
 

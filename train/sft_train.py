@@ -4,8 +4,8 @@ import time
 import torch.distributed as dist
 from torch.nn.parallel import DistributedDataParallel as DDP
 from torch.nn.utils import clip_grad_norm_
-from new_model.dataloader.sft_dataloader import get_sft_dataloader
-from new_model.model.new_model import Model, ModelConfig
+from dataloader.sft_dataloader import get_sft_dataloader
+from model.model import Model, ModelConfig
 
 def ddp_setup(rank, world_size):
     os.environ['MASTER_ADDR'] = os.environ.get('MASTER_ADDR', 'localhost')
@@ -20,21 +20,21 @@ ddp_setup(rank, world_size)
 
 data_files = {
     "kaz": [
-        "/home/srp_base_training/sanzhar/sft_dataset/datasets--SRP-base-model-training--sft_data/snapshots/e2b020281ca6802bcb8168d503b4781110e86590/benchmarks/train/kk_gsm8k_benchmark_2025_jule23_train.jsonl",
-        "/home/srp_base_training/sanzhar/sft_dataset/datasets--SRP-base-model-training--sft_data/snapshots/e2b020281ca6802bcb8168d503b4781110e86590/benchmarks/train/kk_mmlu_benchmark_2025_jule23_train.jsonl",
-        ],
+        "data/sft/kk_gsm8k_benchmark_2025_jule23_train.jsonl",
+        "data/sft/kk_mmlu_benchmark_2025_jule23_train.jsonl",
+    ],
     "rus": [
-        "/home/srp_base_training/sanzhar/sft_dataset/datasets--SRP-base-model-training--sft_data/snapshots/e2b020281ca6802bcb8168d503b4781110e86590/benchmarks/train/ru_gsm8k_benchmark_2025_jule23_train.jsonl",
-        "/home/srp_base_training/sanzhar/sft_dataset/datasets--SRP-base-model-training--sft_data/snapshots/e2b020281ca6802bcb8168d503b4781110e86590/benchmarks/train/ru_mmlu_benchmark_2025_jule23_train.jsonl",
-        ],
+        "data/sft/ru_gsm8k_benchmark_2025_jule23_train.jsonl",
+        "data/sft/ru_mmlu_benchmark_2025_jule23_train.jsonl",
+    ],
     "eng": [
-        "/home/srp_base_training/sanzhar/sft_dataset/datasets--SRP-base-model-training--sft_data/snapshots/e2b020281ca6802bcb8168d503b4781110e86590/benchmarks/train/en_gsm8k_benchmark_2025_jule23_train.jsonl",
-        "/home/srp_base_training/sanzhar/sft_dataset/datasets--SRP-base-model-training--sft_data/snapshots/e2b020281ca6802bcb8168d503b4781110e86590/benchmarks/train/en_mmlu_benchmark_2025_jule23_train.jsonl",
-        ],
+        "data/sft/en_gsm8k_benchmark_2025_jule23_train.jsonl",
+        "data/sft/en_mmlu_benchmark_2025_jule23_train.jsonl",
+    ],
 }
 
-tokenizer_path = "/home/srp_base_training/sanzhar/llm_project/llm_tokenizer/spm_bpe_tokenizer_200m/tokenizer.model"
-checkpoint_path = "/home/srp_base_training/sanzhar/checkpoints_new/model_step_160000.pt"
+tokenizer_path = "llm_tokenizer/spm_bpe_tokenizer_200m/tokenizer.model"
+checkpoint_path = "checkpoints_new/model_step_160000.pt"
 output_dir = "checkpoints_sft/"
 os.makedirs(output_dir, exist_ok=True)
 

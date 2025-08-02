@@ -2,8 +2,8 @@ import os
 import torch
 import torch.distributed as dist
 from torch.nn.parallel import DistributedDataParallel as DDP
-from new_model.model.new_model import Model, ModelConfig
-from new_model.dataloader.new_dataloader import get_data_loader
+from model.model import Model, ModelConfig
+from dataloader.dataloader import get_data_loader
 from torch.nn.utils import clip_grad_norm_
 from torch import GradScaler, autocast
 import time
@@ -42,11 +42,11 @@ def main():
     setup_ddp(rank=rank, world_size=world_size)
     
     data_dirs = {
-        0 : '/home/srp_base_training/data/datasets--issai--Base_LLM_Datasets/snapshots/d62ba981d9ba825905753c27ee73ed5814ebb9ed',
-        1 : '/home/srp_base_training/data/datasets--SRP-base-model-training--dataset_04_06_2025/snapshots/e956fda493c628e494994e0f382f46784c6fbd6a/ru_data/russian/good/russian',
-        2 : '/home/srp_base_training/data/datasets--SRP-base-model-training--dataset_04_06_2025/snapshots/e956fda493c628e494994e0f382f46784c6fbd6a/en_data',
+        0 : 'data/en_data',
+        1 : 'data/ru_data',
+        2 : 'data/kz_data',
     }
-    tokenizer_path = '/home/srp_base_training/sanzhar/llm_project/llm_tokenizer/spm_bpe_tokenizer_200m/tokenizer.model'
+    tokenizer_path = 'llm_tokenizer/spm_bpe_tokenizer_200m/tokenizer.model'
     output_dir = 'checkpoints_new'
     batch_size = 2  
     lr = 3e-5
